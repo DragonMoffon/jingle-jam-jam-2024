@@ -1,7 +1,7 @@
 from typing import IO as _IO
 from collections.abc import Callable
 from pathlib import Path
-from importlib.resources import Anchor
+from importlib.resources import Package as Anchor
 from contextlib import contextmanager
 import importlib.resources as pkg
 
@@ -124,7 +124,7 @@ def make_string_opener(anchor: Anchor, file_extension: str='txt', _encoding: flo
     Returns:
         The reusable read string function
     """
-    if not file_extension.starts_with('.'):
+    if not file_extension.startswith('.'):
          file_extension = '.' + file_extension
     root = pkg.files(anchor)
 
