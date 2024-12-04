@@ -123,7 +123,8 @@ def gen_voronoi(sphere: tuple[tuple[float, float, float], ...], triangles: tuple
     # The circumcenters have the same indexing as the triangles. This makes it very easy to construct them from the mesh
     centers = tuple(circumcenter(sphere[triangles[3*t]], sphere[triangles[3*t+1]], sphere[triangles[3*t+2]]) for t in range(0, len(triangles)//3))
     cells = tuple(cell(idx) for idx in range(len(sphere)))
+    roots = tuple(triangles.index(point) for point in range(len(sphere)))
 
-    return centers, cells
+    return centers, cells, roots
 
 

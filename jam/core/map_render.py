@@ -23,9 +23,9 @@ def generate_cell_indices(count, cells):
         cell = cells[node][:]
         for idx, center in enumerate(cell):
             prev = cell[idx - 1] # Thanks list wrapping
+            yield center + count
             yield prev + count
             yield node
-            yield center + count
 
 class PlanetRenderer:
     
@@ -58,7 +58,11 @@ class PlanetRenderer:
         self.mesh_program['radius'] = 100.0
 
         self.cell_program = load_program(ctx, vertex_shader='voronoi_vs', fragment_shader='voronoi_fs')
-        self.cell_program['radius'] = 100.0                              
+        self.cell_program['radius'] = 100.0
+        self.cell_program['edge_width'] = 0.2 
+        self.cell_program['core_radius'] = 4.0
+
+        self.sector_map: gl.Texture2D = ctx.texture((4, len(points)), components=1, dtype='f4', wrap_x=gl.CLAMP_TO_EDGE, wrap_y=gl.CLAMP_TO_EDGE, filter=(gl.NEAREST, gl.NEAREST))
         
         self.render_mesh: bool = False
 
@@ -67,4 +71,5 @@ class PlanetRenderer:
             if self.render_mesh:
                 self.mesh_vbo.render(self.mesh_program)
             else:
+                self.sector_map.use()
                 self.cell_vbo.render(self.cell_program)

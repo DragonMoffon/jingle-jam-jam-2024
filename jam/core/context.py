@@ -13,8 +13,8 @@ class PlayerContext:
     MOVE_SPEED: float = 60.0
 
     def __init__(self):
-        self.size: PlanetSize = PlanetSize.MEDIUM
-        self.noise: PlanetNoise = PlanetNoise.MEDIUM
+        self.size: PlanetSize = PlanetSize.TINY
+        self.noise: PlanetNoise = PlanetNoise.HIGH
 
 
 class GameContext:
@@ -23,6 +23,9 @@ class GameContext:
     WINDOW_HEIGHT: int = 720
     MOUSE_EXCLUSIVE: bool = True
     MOUSE_SHOWN: bool = False
+
+    UPDATE_RATE: float = 1.0 / 120.0
+    FIXED_RATE: float = 1.0 / 20.0
     
     def __init__(self):
         self.window: Window = None

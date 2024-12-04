@@ -33,3 +33,7 @@ class GameView(View):
 
     def on_update(self, delta_time):
         self.fly_grip.update(delta_time)
+        self.planet.update(delta_time)
+
+    def on_fixed_update(self, delta_time):
+        self.planet.fixed_update(delta_time)

@@ -13,7 +13,7 @@ __all__ = (
 class Window(ArcadeWindow):
 
     def __init__(self):
-        super().__init__(context.WINDOW_WIDTH, context.WINDOW_HEIGHT, context.TITLE)
+        super().__init__(context.WINDOW_WIDTH, context.WINDOW_HEIGHT, context.TITLE, update_rate=context.UPDATE_RATE, fixed_rate=context.FIXED_RATE)
 
 
 class View(ArcadeView):
