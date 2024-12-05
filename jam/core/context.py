@@ -18,7 +18,7 @@ class PlayerContext:
 
 
 class GameContext:
-    TITLE: str = 'jingle jam'
+    TITLE: str = "jingle jam"
     WINDOW_WIDTH: int = 1280
     WINDOW_HEIGHT: int = 720
     MOUSE_EXCLUSIVE: bool = True
@@ -26,14 +26,16 @@ class GameContext:
 
     UPDATE_RATE: float = 1.0 / 120.0
     FIXED_RATE: float = 1.0 / 20.0
-    
+
+    DEFAULT_CAPACITY: float = 25.0
+
     def __init__(self):
         self.window: Window = None
         self.player: PlayerContext = None
 
     def set_window(self, window: Window):
         if self.window is not None:
-            raise ValueError('Window already set')
+            raise ValueError("Window already set")
         self.window = window
 
     def initialise(self, window: Window):
@@ -41,4 +43,6 @@ class GameContext:
         window.set_exclusive_mouse(GameContext.MOUSE_EXCLUSIVE)
         window.set_mouse_visible(GameContext.MOUSE_SHOWN)
         self.player = PlayerContext()
+
+
 context = GameContext()
